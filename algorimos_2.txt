@@ -1,0 +1,113 @@
+10
+
+
+
+0
+2
+4
+6
+8
+10
+
+
+0	0+2=2
+2	2+2=4
+4	4+2=6
+6	6+2=8
+8	8+2=10
+10
+
+Inicio conteo
+	Var numero
+	Var numeroInicial = 0
+	Var limite
+	
+	Escribir "Ingrese un numero"
+	limite = numero / 2
+	
+	Desde 0 hasta limite
+		Escribir numeroInicial
+		numeroInicial = numeroInicial + 2
+	
+	findesde	
+	
+	
+	Desde numeroInicial = 0; hasta numero; 2
+		Escribir numeroInicial
+	findesde
+	
+	mientras(numeroInicial <= numero) hacer
+		Escribir numeroInicial
+		numeroInicial = numeroInicial + 2
+	
+	finmientras
+	
+	
+
+Fin 
+
+
+Inicio sumaDeNumeros
+	var inicio = 1
+	var num = 0
+	var total = 0
+	
+	Desde inicio = 1; hasta 10; 1
+		Escribir "Ingrese un valor numerico"
+		Leer num
+		total = total + num
+	findesde
+	
+	Escribir "el total de la suma de los numeros ingresados es"
+	Escribir total
+Fin
+
+
+
+Inicio sumaDeNumeros
+	var cantidad
+	Escribir "Ingrese la cantidad de numeros a sumar"
+	Leer(cantidad)
+	
+	var elemento[cantidad]
+	Var elemento
+	var total = 0
+	
+	
+	Desde inicio = 0; hasta cantidad - 1; 1
+		Escribir "Ingrese un valor numerico"
+		Leer numeros[inicio]
+	findesde
+	
+	Para cada (elemento en numeros)
+		total = total + elemento
+	finpara
+	
+	Escribir "el total de la suma de los numeros ingresados es"
+	Escribir total
+Fin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

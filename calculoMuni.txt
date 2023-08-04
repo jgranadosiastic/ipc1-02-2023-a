@@ -1,0 +1,76 @@
+La empresa municipal desea que lleve el control de gasto de agua y energia electrica 
+bajo las siguientes cuotas:
+
+Agua:
+si consume como maximo 10m3  el pago es de Q10 fijos
+si consume mas  de 10 y maximo de 100 se cobra Q1.1 por metro extra, aparte del pago fijo
+si consume mas de 100 el precio es de Q2 por metro3 extra
+
+Energia
+Si vive en zona 1, el Kw/h es de Q0.75
+si vive en zona 4-8 el Kw/h es de Q1.15
+En las otras zonas el Kw/h es de Q1.25
+
+El registrador debe ingresar los datos necesarios para obtener
+ el valor total de la factura
+ 
+ 
+ 
+ Inicio CalculoMuni
+ 	var metrosCubicos
+ 	var zona
+ 	var kwHora
+ 	var total
+ 	var subtotalAgua
+ 	var subtotalEnergia
+ 	
+ 	Escribir "Ingrese metros cubicos consumidos"
+ 	Leer(metrosCubicos)
+ 	Escribir "Ingrese la zona"
+ 	Leer(zona)
+ 	Escribir "Ingrese kw hora consumidos"
+ 	Leer(kwHora)
+ 	
+ 	subtotalAgua = Llamar calcularAgua(metrosCubicos)
+ 	subtotalEnergia = Llamar calcularEnergia(kwHora, zona)
+ 	
+ 	total = subtotalAgua + subtotalEnergia
+ 	Escribir "El total a pagar es de "
+ 	Escribir total
+ Fin
+ 
+ 
+ Inicio subprograma calcularAgua (cantidadMetros)
+ 	
+ 	var subTotal
+ 	var excedente1
+ 	var excedente2
+ 	
+ 	si (cantidadMetros <= 10) entonces
+ 		subtotal = 10
+ 	sino si(cantidadMetros > 10 && cantidadMetros <= 100) entonces
+ 		excedente = cantidadMetros - 10
+ 		subtotal = 10 + (excedente * 1.1)
+ 	sino
+ 		excedente1 = 100 - 10
+ 		excedente2 = cantidadMetros - 100
+ 		subtotal = 10 + (excedente1 * 1.1) + (excedente2 * 2)
+ 	finsi
+ 	
+ 	retornar subtotal
+ Fin
+ 
+Inicio subprograma calcularEnergia (cantidadKw, zona)
+ 	
+ 	var subTotal
+ 	
+ 	si (zona == 1) entonces
+ 		subtotal = cantidadKw * 0.75
+ 	sino si(zona > 4 && zona <=  8) entonces
+ 		subTotal = cantidadKw * 1.15
+ 	sino
+ 		subTotal = cantidadKw * 1.25
+ 	finsi
+ 	
+ 	retornar subtotal
+ Fin

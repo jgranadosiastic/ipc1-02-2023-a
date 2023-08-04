@@ -1,0 +1,85 @@
+Inicio sumarDosNumeros
+
+
+	Var primerNumero
+	Var segundoNumero
+	Var total
+	
+	// Pedir primer numero
+	Escribir "Ingresar primer numero"
+	Leer primerNumero
+	// Pedir segundo numero
+	Escribir "Ingresar segundo numero"
+	Leer segundoNumero
+	
+	// sumar los numeros
+	total = primerNumero + segundoNumero
+	
+	Escribir "El resultado de la suna es:"
+	Escribir total
+
+Fin
+
+Inicio numeroMayor
+
+	Var primerNumero
+	Var segundoNumero
+	
+	
+	// Pedir primer numero
+	Escribir "Ingresar primer numero"
+	Leer primerNumero	5
+	// Pedir segundo numero
+	Escribir "Ingresar segundo numero"
+	Leer segundoNumero	15
+	
+	si (primerNumero > segundoNumero) entonces
+		Escribir "El mayor es"
+		Escribir primerNumero
+	sino si(primerNumero == segundoNumero)
+		Escribir "Los numeros son iguales"
+	sino
+		Escribir "El mayor es"
+		Escribir segundoNumero
+	finsi	
+	
+Fin
+
+
+Escribir un algoritmo que pida el total de una 
+venta y aplique el 5% de descuento cuando el cliente
+gaste  Q500 o menos, aplique el 10% de descuento
+cuando el cliente gaste entre Q501 y Q2000,
+y aplique el 15% de descuento cuando gaste
+mas de Q2000. Se debe mostrar el total a pagar.
+
+Inicio descuento
+	Var totalGastado
+	Var descuento
+	var total
+	
+	Escribir "Ingrese el total gastado"
+	Leer(totalGastado)
+	
+	si ( totalGastado < 501) entonces
+		descuento =  totalGastado * 0.05
+	sino si (totalGastado >= 501 && totalGastado < 2001) entonces
+		descuento =  totalGastado * 0.1
+	sino
+		descuento = totalGastado * 0.2
+	finsi
+
+	total = totalGastado - descuento
+	
+	Escribir "El total a pagar con su descuento es:"
+	Escribir total
+
+Fin
+
+
+
+
+
+
+
+

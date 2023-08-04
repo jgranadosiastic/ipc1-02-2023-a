@@ -1,0 +1,46 @@
+Inicio CanastaCompras
+
+	var opcion
+	var subtotal = 0
+	Hacer
+		subtotal = Llamar registrarPrecio(subtotal)
+		Escribir "Si quiere pagar ingrese la letra P, si quiere continuer presione la letra C"
+		Leer(opcion)
+	Mientras(opcion == "C")
+	
+	Llamar calcularaDescuento(subtotal)
+
+Fin
+
+
+
+Inicio subprograma calcularDescuento(subtotal)
+	var descuento
+	Const CONSUMO_MINIMO = 500
+	Const DESCUENTO_1 = 0.1
+	Const DESCUENTO_2 = 0.15
+	
+	si (subtotal <= CONSUMO_MINIMO) entonces
+		descuento = subtotal * DESCUENTO_1
+		subtotal = subtotal - descuento
+	sino
+		descuento = subtotal * DESCUENTO_2
+		subtotal = subtotal - descuento
+	finsi
+	
+	Escribir "Su descuento  fue de: Q "
+	Escribir descuento
+	Escribir "El total a pagar es de: Q.'
+	Escribir subtotal
+
+Fin
+
+
+Inicio subprograma registrarPrecio(subtotal)
+	
+	var precio
+	Escribir "Ingrese el precio del producto"
+	Leer(precio)
+	
+	retornar subtotal + precio
+Fin

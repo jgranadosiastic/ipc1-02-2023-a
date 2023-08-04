@@ -1,0 +1,19 @@
+Crear un juego de buscaminas simplificado.
+Al iniciar el juego, se elige la cantidad de minas
+a colocar en el tablero, el tablero siempre sera de 5x5.
+Hay tres niveles (cantidad de minas)
+1. facil = 3 minas
+2. medio = 6 minas
+3. dificil = 12 minas
+
+El juego consite en que el usuario debe 
+desactivad minas al inidica la casilla donde
+supone que exite una mina, teniendo una cantida
+definida de intentos.
+1. facil = 25 intentos
+2. medio = 20 intentos
+3. dificl = 15 intentos
+
+El juego se gana cuando se desactivan todas las minas
+
+
