@@ -1,0 +1,13 @@
+
+llamar factorial(4)
+
+
+factorial(x)
+
+	si (x == 0 || X == 1)
+		retornar 1
+	finsi
+	
+	retornar x * factorial(x - 1)
+
+fin

@@ -1,22 +1,19 @@
 package com.mycompany.ipc1_02_2023;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
 /**
  * Crear un juego de buscaminas simplificado. Al iniciar el juego, se elige la
  * cantidad de minas a colocar en el tablero, el tablero siempre sera de 5x5.
- * Hay tres niveles (cantidad de minas) 
- * 1. facil = 3 minas 
- * 2. medio = 6 minas 
- * 3. dificil = 12 minas
+ * Hay tres niveles (cantidad de minas) 1. facil = 3 minas 2. medio = 6 minas 3.
+ * dificil = 12 minas
  *
  * El juego consite en que el usuario debe desactivad minas al inidica la
  * casilla donde supone que exite una mina, teniendo una cantida definida de
- * intentos. 
- * 1. facil = 25 intentos 
- * 2. medio = 20 intentos 
- * 3. dificl = 15 intentos
+ * intentos. 1. facil = 25 intentos 2. medio = 20 intentos 3. dificl = 15
+ * intentos
  *
  * El juego se gana cuando se desactivan todas las minas
  *
@@ -38,15 +35,23 @@ public class Buscaminas {
     static int intentos;
 
     public static void main(String[] args) {
+        System.out.println("arguments:");
+        System.out.println(Arrays.toString(args));
         int nivel;
         Scanner scanner = new Scanner(System.in);
         char[][] tablero = new char[5][5];
-        // Pedir que se ingrese el nivel:
-        System.out.println("Seleccione el nivel:");
-        System.out.println("1. Facil");
-        System.out.println("2. Medio");
-        System.out.println("3. Dificil");
-        nivel = Integer.valueOf(scanner.nextLine());
+
+        if (args.length > 0) {
+            nivel = Integer.valueOf(args[0]);
+        } else {
+            // Pedir que se ingrese el nivel:
+            System.out.println("Seleccione el nivel:");
+            System.out.println("1. Facil");
+            System.out.println("2. Medio");
+            System.out.println("3. Dificil");
+            nivel = Integer.valueOf(scanner.nextLine());
+
+        }
 
         registrarNivel(nivel);
         colocarMinas(tablero);
