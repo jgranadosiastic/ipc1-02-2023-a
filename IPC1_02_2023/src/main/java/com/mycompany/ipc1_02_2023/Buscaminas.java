@@ -1,5 +1,6 @@
 package com.mycompany.ipc1_02_2023;
 
+import com.mycompany.ipc1_02_2023.objects.articulos.Articulo;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -40,7 +41,9 @@ public class Buscaminas {
         int nivel;
         Scanner scanner = new Scanner(System.in);
         char[][] tablero = new char[5][5];
-
+        Articulo articulo = new Articulo();
+        //articulo.costoBase = 55;
+        
         if (args.length > 0) {
             nivel = Integer.valueOf(args[0]);
         } else {
