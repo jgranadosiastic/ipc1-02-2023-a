@@ -22,6 +22,14 @@ public class Articulo {
     
     private double costoBase;
     
+    public Articulo(double costoBaseInicial) {
+        costoBase = costoBaseInicial;
+    }
+    
+    public Articulo() {
+        
+    }
+    
     public double calcularPrecioAlMayor() {
         double incremento = costoBase * INCREMENTO_AL_MAYOR;
         return costoBase + incremento;

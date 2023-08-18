@@ -30,8 +30,7 @@ public class Main {
         System.out.println("Ingrese el costo base del articulo");
         double costoBase2 = Double.valueOf(scanner.nextLine());
         
-        Articulo miArticulo2 = new Articulo();
-        miArticulo2.definirCostoBase(costoBase2);
+        Articulo miArticulo2 = new Articulo(costoBase2);
         
         System.out.println("El precio al mayor es:");
         System.out.println(miArticulo2.calcularPrecioAlMayor());
