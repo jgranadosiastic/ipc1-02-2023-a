@@ -4,6 +4,8 @@
  */
 package com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos;
 
+import com.mycompany.ipc1_02_2023.objects.game.armas.Arma;
+import com.mycompany.ipc1_02_2023.objects.game.armas.Fuego;
 import java.util.Random;
 
 /**
@@ -22,6 +24,8 @@ public class Dragon extends EnemigoVolador {
         Random random = new Random();
         int volandoRandom = random.nextInt(2);
         volando = volandoRandom == 1;
+        armas = new Arma[1];
+        armas[0] = new Fuego();
     }
     
     public void aterrizar() {

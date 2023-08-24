@@ -4,6 +4,10 @@
  */
 package com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos;
 
+import com.mycompany.ipc1_02_2023.objects.game.armas.Arma;
+import com.mycompany.ipc1_02_2023.objects.game.armas.Fuego;
+import com.mycompany.ipc1_02_2023.objects.game.armas.Piedra;
+
 /**
  *
  * @author jose
@@ -17,6 +21,8 @@ public class Troll extends Enemigo {
         puntosVida = PUNTOS_VIDA;
         puntosDefensaInferior = DEFENSA_INFERIOR;
         puntosDefensaSuperior = DEFENSA_SUPERIOR;
+        armas = new Arma[1];
+        armas[0] = new Piedra();
     }
     
     

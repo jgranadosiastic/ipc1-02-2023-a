@@ -4,6 +4,10 @@
  */
 package com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos;
 
+import com.mycompany.ipc1_02_2023.objects.game.armas.Acido;
+import com.mycompany.ipc1_02_2023.objects.game.armas.Arma;
+import com.mycompany.ipc1_02_2023.objects.game.armas.Fuego;
+
 /**
  *
  * @author jose
@@ -18,6 +22,8 @@ public class Gargola extends EnemigoVolador {
         puntosDefensaInferior = DEFENSA_INFERIOR;
         puntosDefensaSuperior = DEFENSA_SUPERIOR;
         volando = true;
+        armas = new Arma[1];
+        armas[0] = new Acido();
     }
     
 }

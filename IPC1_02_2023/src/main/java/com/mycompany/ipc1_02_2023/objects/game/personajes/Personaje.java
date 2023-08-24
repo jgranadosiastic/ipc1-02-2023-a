@@ -4,6 +4,8 @@
  */
 package com.mycompany.ipc1_02_2023.objects.game.personajes;
 
+import com.mycompany.ipc1_02_2023.objects.game.armas.Arma;
+
 /**
  *
  * @author jose
