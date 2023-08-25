@@ -27,4 +27,8 @@ public class Jugador extends Personaje {
         armas[INDICE_ESPADA] = new Espada();
         armas[INDICE_AARCO] = new Arco();
     }
+    
+    public Arma obtenerArma(int index) {
+        return armas[index];
+    }
 }

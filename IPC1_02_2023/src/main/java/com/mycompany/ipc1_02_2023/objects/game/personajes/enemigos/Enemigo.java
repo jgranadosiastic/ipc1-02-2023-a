@@ -4,6 +4,7 @@
  */
 package com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos;
 
+import com.mycompany.ipc1_02_2023.objects.game.armas.Arma;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.Personaje;
 
 /**
@@ -12,4 +13,7 @@ import com.mycompany.ipc1_02_2023.objects.game.personajes.Personaje;
  */
 public class Enemigo extends Personaje {
     
+    public Arma obtenerArma() {
+        return armas[0];
+    }
 }

@@ -10,4 +10,12 @@ package com.mycompany.ipc1_02_2023.objects.game.armas;
  */
 public class Fuego extends Arma {
     
+    private static final int DAÑO_INFERIOR = 6;
+    private static final int DAÑO_SUPERIOR = 10;
+    
+    public Fuego() {
+        dañoInferior = DAÑO_INFERIOR;
+        dañoSuperior = DAÑO_SUPERIOR;
+    }
+    
 }
