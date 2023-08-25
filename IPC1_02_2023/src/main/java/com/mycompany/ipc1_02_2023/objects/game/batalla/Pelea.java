@@ -92,6 +92,7 @@ public class Pelea {
                 System.out.println("El jugador atacara con espada. Presione enter para continuar....");
             } else {
                 System.out.println("El jugador atacara con arco. Presione enter para continuar....");
+                scanner.nextLine();
                 Arco arco = (Arco) arma;
                 if (!arco.tieneFlechas()) {
                     System.out.println("El jugador no tiene flechas. Presione enter para continuar....");
