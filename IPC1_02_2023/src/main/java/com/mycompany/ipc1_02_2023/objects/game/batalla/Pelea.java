@@ -4,6 +4,7 @@
  */
 package com.mycompany.ipc1_02_2023.objects.game.batalla;
 
+import com.mycompany.ipc1_02_2023.objects.game.armas.Arco;
 import com.mycompany.ipc1_02_2023.objects.game.armas.Arma;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.Jugador;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.Personaje;
@@ -86,14 +87,18 @@ public class Pelea {
             System.out.println("1. Espada");
             System.out.println("2. Arco");
             int opcion = Integer.valueOf(scanner.nextLine());
-
+            Arma arma = ((Jugador) atacante).obtenerArma(opcion - 1);
             if (opcion == 1) {
                 System.out.println("El jugador atacara con espada. Presione enter para continuar....");
             } else {
                 System.out.println("El jugador atacara con arco. Presione enter para continuar....");
+                Arco arco = (Arco) arma;
+                if (!arco.tieneFlechas()) {
+                    System.out.println("El jugador no tiene flechas. Presione enter para continuar....");
+                }
             }
 
-            return ((Jugador) atacante).obtenerArma(opcion - 1);
+            return arma;
         }
 
         System.out.println("El enemigo atacará con su arma. Presione enter para continuar....");
