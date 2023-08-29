@@ -14,7 +14,7 @@ import java.util.Random;
  */
 public class Arco extends Arma {
 
-    private static int FLECHAS_INICIALES = 2;
+    private static int FLECHAS_INICIALES = 15;
 
     private static final int DAÑO_INFERIOR = 1;
     private static final int DAÑO_SUPERIOR = 3;
@@ -50,5 +50,9 @@ public class Arco extends Arma {
     
     public boolean tieneFlechas() {
         return flechas > 0;
+    }
+    
+    public void recogerFlechas(int flechas) {
+        this.flechas += flechas;
     }
 }

@@ -5,6 +5,7 @@
 package com.mycompany.ipc1_02_2023.objects.game;
 
 import com.mycompany.ipc1_02_2023.objects.game.batalla.Pelea;
+import com.mycompany.ipc1_02_2023.objects.game.camino.Camino;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.Jugador;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos.Enemigo;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos.Troll;
@@ -17,9 +18,11 @@ public class Main {
 
     public static void main(String[] args) {
         Jugador jugador = new Jugador();
-        Troll troll = new Troll();
+        /*Troll troll = new Troll();
 
         Pelea pelea = new Pelea(jugador, troll);
-        pelea.pelear();
+        pelea.pelear();*/
+        Camino camino = new Camino(jugador);
+        camino.iniciar();
     }
 }
