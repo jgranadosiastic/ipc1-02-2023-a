@@ -6,13 +6,14 @@ package com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos;
 
 import com.mycompany.ipc1_02_2023.objects.game.armas.Arma;
 import com.mycompany.ipc1_02_2023.objects.game.armas.Fuego;
+import com.mycompany.ipc1_02_2023.objects.game.personajes.Personaje;
 import java.util.Random;
 
 /**
  *
  * @author jose
  */
-public class Dragon extends EnemigoVolador {
+public class Dragon extends EnemigoVolador implements DañoProximidad {
     private static final int PUNTOS_VIDA = 100;
     private static final int DEFENSA_INFERIOR = 3;
     private static final int DEFENSA_SUPERIOR = 6;
@@ -36,4 +37,9 @@ public class Dragon extends EnemigoVolador {
         volando = true;
     }
     
+    @Override
+    public int aplicarDañoProximidad(Personaje atacado) {
+        // TODO
+        return 0;
+    }
 }

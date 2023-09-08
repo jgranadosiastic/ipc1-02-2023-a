@@ -49,4 +49,20 @@ public class Jugador extends Personaje {
     public void recogerFlechas(int flechas) {
         ((Arco) armas[INDICE_AARCO]).recogerFlechas(flechas);
     }
+    
+    public void incrementarDañoInferior(int valor) {
+        
+    }
+    
+    public void incrementarDañoSuperior(int valor) {
+        
+    }
+    
+    public void incrementarDefensaInferior(int valor) {
+        
+    }
+    
+    public void incrementarDefensaSuperior(int valor) {
+        
+    }
 }

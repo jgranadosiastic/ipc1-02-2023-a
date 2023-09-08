@@ -5,6 +5,7 @@
 package com.mycompany.ipc1_02_2023.objects.game.armas;
 
 import com.mycompany.ipc1_02_2023.objects.game.personajes.Personaje;
+import com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos.DañoProximidad;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos.EnemigoVolador;
 
 /**
@@ -15,7 +16,7 @@ public class Espada extends Arma {
     
     private static final int DAÑO_INFERIOR = 5;
     private static final int DAÑO_SUPERIOR = 8;
-
+    
     public Espada() {
         dañoInferior = DAÑO_INFERIOR;
         dañoSuperior = DAÑO_SUPERIOR;
@@ -28,6 +29,9 @@ public class Espada extends Arma {
             if (enemigo.estaVolando()) {
                 return 0;
             }
+        } else if (atacado instanceof DañoProximidad) {
+            // TODO
+            //aplicar da;o extra
         }
         
         return super.calcularDaño(atacado);

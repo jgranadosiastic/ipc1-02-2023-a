@@ -5,6 +5,9 @@
 package com.mycompany.ipc1_02_2023.objects.game.camino;
 
 import com.mycompany.ipc1_02_2023.objects.game.batalla.Pelea;
+import com.mycompany.ipc1_02_2023.objects.game.objects.Objeto;
+import com.mycompany.ipc1_02_2023.objects.game.objects.PotenciadorDaño;
+import com.mycompany.ipc1_02_2023.objects.game.objects.PotenciadorDefensa;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.Jugador;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos.Dragon;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos.Enemigo;
@@ -36,6 +39,14 @@ public class Camino {
                 jugador.recogerFlechas(flechas);
                 scanner.nextLine();
             }
+            Objeto objeto = encontrarObjeto();
+            if (objeto != null) {
+                System.out.println("Se ha encontrado un objeto " + objeto.getClass().getSimpleName());
+                objeto.aplicarEfecto(jugador);
+                System.out.println("Haz encontrado " + flechas + " flechas. Presiona enter para continuar....");
+                scanner.nextLine();
+            }
+            
             Enemigo enemigo = crearEnemigo();
             if (enemigo == null) {
                 System.out.println("Ufff que suerte, no encontraste enemigo. Presiona enter para continuar....");
@@ -76,4 +87,18 @@ public class Camino {
         return random.nextInt(7) + 3;
     }
 
+    
+    private Objeto encontrarObjeto() {
+        Random random = new Random();
+        int objetoProbabilidad = random.nextInt(100);
+        if (objetoProbabilidad >= 0 && objetoProbabilidad < 75) {
+            return null;
+        } else if (objetoProbabilidad >= 75 && objetoProbabilidad < 90) {
+            return new PotenciadorDaño();
+        } else if (objetoProbabilidad >= 56 && objetoProbabilidad < 84) {
+            return null;
+        } else {
+            return new PotenciadorDefensa();
+        }
+    }
 }
