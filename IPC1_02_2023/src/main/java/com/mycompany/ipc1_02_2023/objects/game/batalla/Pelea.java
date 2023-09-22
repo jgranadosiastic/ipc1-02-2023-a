@@ -83,22 +83,33 @@ public class Pelea {
 
     private Arma definirArma(Personaje atacante) {
         if (atacante instanceof Jugador) {
-            System.out.println("Elija un arma:");
-            System.out.println("1. Espada");
-            System.out.println("2. Arco");
-            int opcion = Integer.valueOf(scanner.nextLine());
-            Arma arma = ((Jugador) atacante).obtenerArma(opcion - 1);
-            if (opcion == 1) {
-                System.out.println("El jugador atacara con espada. Presione enter para continuar....");
-            } else {
-                System.out.println("El jugador atacara con arco. Presione enter para continuar....");
-                Arco arco = (Arco) arma;
-                if (!arco.tieneFlechas()) {
-                    System.out.println("El jugador no tiene flechas. Presione enter para continuar....");
+            boolean conError = true;
+            while (conError) {
+                try {
+                    System.out.println("Elija un arma:");
+                    System.out.println("1. Espada");
+                    System.out.println("2. Arco");
+
+                    int opcion = Integer.valueOf(scanner.nextLine());
+                    Arma arma = ((Jugador) atacante).obtenerArma(opcion - 1);
+                    if (opcion == 1) {
+                        System.out.println("El jugador atacara con espada. Presione enter para continuar....");
+                    } else {
+                        System.out.println("El jugador atacara con arco. Presione enter para continuar....");
+                        Arco arco = (Arco) arma;
+                        if (!arco.tieneFlechas()) {
+                            System.out.println("El jugador no tiene flechas. Presione enter para continuar....");
+                        }
+                    }
+                    conError = false;
+                    return arma;
+
+                } catch (NumberFormatException ex) {
+                    //  codigo de manejo de la exception
+                    conError = true;
+                    System.out.println("Ha ingresado un valor no numerico, baboso!");
                 }
             }
-
-            return arma;
         }
 
         System.out.println("El enemigo atacará con su arma. Presione enter para continuar....");
