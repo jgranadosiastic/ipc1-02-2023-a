@@ -6,6 +6,7 @@ package com.mycompany.ipc1_02_2023.objects.game.batalla;
 
 import com.mycompany.ipc1_02_2023.objects.game.armas.Arco;
 import com.mycompany.ipc1_02_2023.objects.game.armas.Arma;
+import com.mycompany.ipc1_02_2023.objects.game.batalla.exceptions.GameException;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.Jugador;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.Personaje;
 import com.mycompany.ipc1_02_2023.objects.game.personajes.enemigos.Enemigo;
@@ -39,7 +40,16 @@ public class Pelea {
             // repetir hasta que uno muera
             // si es jugador, elije arma y gokpea
             // si es enemigo, golpea
-            Arma armaAAtacar = definirArma(atacante);
+            Arma armaAAtacar;
+            try {
+                armaAAtacar = definirArma(atacante);
+            } catch (GameException e) {
+                System.out.println(e.getMessage());
+                System.out.println("USted perdió su turno.");
+                scanner.nextLine();
+                cambiarAtacante();
+                continue;
+            }
             scanner.nextLine();
             int daño = armaAAtacar.calcularDaño(atacado);
             int dañoRecibido = atacado.recibirDaño(daño);
@@ -81,6 +91,38 @@ public class Pelea {
         return !jugador.estaVivo() || !enemigo.estaVivo();
     }
 
+    private Arma definirArma(Personaje atacante) throws GameException {
+        if (atacante instanceof Jugador) {
+            System.out.println("Elija un arma:");
+            System.out.println("1. Espada");
+            System.out.println("2. Arco");
+            int opcion;
+            try {
+                opcion = Integer.valueOf(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                throw new GameException("No sea mula!");
+            }
+
+            Arma arma = ((Jugador) atacante).obtenerArma(opcion - 1);
+            if (opcion == 1) {
+                System.out.println("El jugador atacara con espada. Presione enter para continuar....");
+            } else {
+                System.out.println("El jugador atacara con arco. Presione enter para continuar....");
+                Arco arco = (Arco) arma;
+                if (!arco.tieneFlechas()) {
+                    System.out.println("El jugador no tiene flechas. Presione enter para continuar....");
+                }
+            }
+
+            return arma;
+
+        }
+
+        System.out.println("El enemigo atacará con su arma. Presione enter para continuar....");
+        return ((Enemigo) atacante).obtenerArma();
+    }
+
+    /*
     private Arma definirArma(Personaje atacante) {
         if (atacante instanceof Jugador) {
             boolean conError = true;
@@ -114,8 +156,7 @@ public class Pelea {
 
         System.out.println("El enemigo atacará con su arma. Presione enter para continuar....");
         return ((Enemigo) atacante).obtenerArma();
-    }
-
+    }*/
     private void imprimirPuntosVida() {
         System.out.println("Puntos de vida del judador:");
         System.out.println(jugador.obtenerPuntosVida());
