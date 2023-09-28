@@ -4,20 +4,23 @@
  */
 package com.mycompany.ipc1_02_2023.swing.tictactoe.frontend;
 
+import com.mycompany.ipc1_02_2023.swing.tictactoe.backend.MotorJuego;
+
 /**
  *
  * @author jose
  */
 public class TicTacToeFrame extends javax.swing.JFrame {
 
+    private MotorJuego motorJuego;
+
     /**
      * Creates new form TicTacToeFrame
      */
     public TicTacToeFrame() {
         initComponents();
-        CasillaX x1 = new CasillaX();
-        pnlTablero.add(x1);
-        pnlTablero.repaint();
+        motorJuego = new MotorJuego();
+        refrescarPanel();
     }
 
     /**
@@ -116,6 +119,17 @@ public class TicTacToeFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void refrescarPanel() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+
+                pnlTablero.add(motorJuego.obtenerCasillas()[i][j]);
+
+            }
+
+        }
+        pnlTablero.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
