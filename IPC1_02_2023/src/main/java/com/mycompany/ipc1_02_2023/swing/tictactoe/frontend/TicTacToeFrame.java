@@ -5,6 +5,7 @@
 package com.mycompany.ipc1_02_2023.swing.tictactoe.frontend;
 
 import com.mycompany.ipc1_02_2023.swing.tictactoe.backend.MotorJuego;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,9 +20,26 @@ public class TicTacToeFrame extends javax.swing.JFrame {
      */
     public TicTacToeFrame() {
         initComponents();
-        motorJuego = new MotorJuego();
-        refrescarPanel();
+        motorJuego = new MotorJuego(this);
     }
+    
+    public void actualizarEtiquetaTurno() {
+        this.lblEnTurno.setText(motorJuego.obtenerJugadorEnTurno().getNombre());
+    }
+    
+    public void anunciarGanador() {
+        JOptionPane.showMessageDialog(this, "El ganador es el jugador " + motorJuego.obtenerJugadorEnTurno().getNombre(),
+                "Ganador!", JOptionPane.INFORMATION_MESSAGE);
+        limpiar();
+    }
+    
+    
+    
+    public void anunciarEmpate() {
+        JOptionPane.showMessageDialog(this, "No hay ganador", "Empate!", JOptionPane.INFORMATION_MESSAGE);
+        limpiar();
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,18 +52,18 @@ public class TicTacToeFrame extends javax.swing.JFrame {
 
         pnlTablero = new javax.swing.JPanel();
         pnlInfo = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblJugador1 = new javax.swing.JLabel();
+        lblJugador2 = new javax.swing.JLabel();
+        lblEnTurno = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btnNuevoJuego = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(450, 450));
-        setSize(new java.awt.Dimension(450, 450));
+        setPreferredSize(new java.awt.Dimension(455, 455));
+        setSize(new java.awt.Dimension(455, 455));
 
         pnlTablero.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         pnlTablero.setLayout(new java.awt.GridLayout(3, 3, 2, 2));
@@ -58,11 +76,11 @@ public class TicTacToeFrame extends javax.swing.JFrame {
             pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblEnTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlInfoLayout.setVerticalGroup(
@@ -71,19 +89,24 @@ public class TicTacToeFrame extends javax.swing.JFrame {
                 .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlInfoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblEnTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlInfoLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Juego");
 
-        jMenuItem1.setText("Nuevo Juego");
-        jMenu1.add(jMenuItem1);
+        btnNuevoJuego.setText("Nuevo Juego");
+        btnNuevoJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoJuegoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnNuevoJuego);
 
         jMenuBar1.add(jMenu1);
 
@@ -119,27 +142,47 @@ public class TicTacToeFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNuevoJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoJuegoActionPerformed
+        NombresDialog dialog = new NombresDialog(this, motorJuego);
+        dialog.setVisible(true);
+        actualizarEtiquetasJugadores(dialog);
+        actualizarEtiquetaTurno();
+        refrescarPanel();
+    }//GEN-LAST:event_btnNuevoJuegoActionPerformed
+
     private void refrescarPanel() {
+        pnlTablero.removeAll();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-
                 pnlTablero.add(motorJuego.obtenerCasillas()[i][j]);
-
             }
-
         }
+        pnlTablero.validate();
         pnlTablero.repaint();
     }
+    
+    private void actualizarEtiquetasJugadores(NombresDialog dialog) {
+        this.lblJugador1.setText(dialog.getNombreJugador1());
+        this.lblJugador2.setText(dialog.getNombreJugador2());
+    }
 
+    private void limpiar() {
+        lblJugador1.setText("");
+        lblJugador2.setText("");
+        lblEnTurno.setText("");
+        pnlTablero.removeAll();
+        pnlTablero.validate();
+        pnlTablero.repaint();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem btnNuevoJuego;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JLabel lblEnTurno;
+    private javax.swing.JLabel lblJugador1;
+    private javax.swing.JLabel lblJugador2;
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JPanel pnlTablero;
     // End of variables declaration//GEN-END:variables

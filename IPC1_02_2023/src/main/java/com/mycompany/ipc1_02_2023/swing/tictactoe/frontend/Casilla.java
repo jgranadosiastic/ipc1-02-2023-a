@@ -22,6 +22,7 @@ public class Casilla extends JLabel {
     private MotorJuego motorJuego;
     
     private boolean seleccionada;
+    private String imagen;
     
     public Casilla(MotorJuego motorJuego) {
         this.setSize(100, 100);
@@ -33,12 +34,22 @@ public class Casilla extends JLabel {
     
     public void seleccionarParaJugador1() {
         this.seleccionada = true;
-        setIcon(new ImageIcon(getClass().getResource(PATH_IMAGEN_X)));
+        imagen = PATH_IMAGEN_X;
+        setIcon(new ImageIcon(getClass().getResource(imagen)));
     }
     
     public void seleccionarParaJugador2() {
         this.seleccionada = true;
-        setIcon(new ImageIcon(getClass().getResource(PATH_IMAGEN_O)));
+        imagen = PATH_IMAGEN_O;
+        setIcon(new ImageIcon(getClass().getResource(imagen)));
+    }
+    
+    public boolean esSeleccionada() {
+        return seleccionada;
+    }
+    
+    public boolean perteneceAUsuario(String imagen) {
+        return this.imagen.equals(imagen);
     }
     
     private void agregarListener() {
@@ -48,6 +59,15 @@ public class Casilla extends JLabel {
                     seleccionarParaJugador1();
                 } else {
                     seleccionarParaJugador2();
+                }
+                motorJuego.getTablero().registrarCasillaSeleccionada();
+                if (motorJuego.hayGanador(imagen)) {
+                    motorJuego.getTicTacToeFrame().anunciarGanador();
+                } else if (motorJuego.hayEmpate(imagen)) {
+                    motorJuego.getTicTacToeFrame().anunciarEmpate();
+                } else {
+                    motorJuego.cambiarJugador();
+                    motorJuego.getTicTacToeFrame().actualizarEtiquetaTurno();
                 }
             }
         });
