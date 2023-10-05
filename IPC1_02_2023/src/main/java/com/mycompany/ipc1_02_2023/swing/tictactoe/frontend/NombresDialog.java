@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 public class NombresDialog extends javax.swing.JDialog {
 
     private MotorJuego motorJuego;
+    private boolean registrarNuevoJuego;
     /**
      * Creates new form NombresDialog
      */
@@ -31,6 +32,11 @@ public class NombresDialog extends javax.swing.JDialog {
     public String getNombreJugador2() {
         return txtNombreJugador2.getText();
     }
+    
+    public boolean seRegistraNuevoJuego() {
+        return this.registrarNuevoJuego;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,6 +107,7 @@ public class NombresDialog extends javax.swing.JDialog {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         try {
             motorJuego.iniciarJuego(getNombreJugador1(), getNombreJugador2());
+            registrarNuevoJuego = true;
             this.setVisible(false);
         } catch (TicTacToeException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

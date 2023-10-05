@@ -145,9 +145,11 @@ public class TicTacToeFrame extends javax.swing.JFrame {
     private void btnNuevoJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoJuegoActionPerformed
         NombresDialog dialog = new NombresDialog(this, motorJuego);
         dialog.setVisible(true);
-        actualizarEtiquetasJugadores(dialog);
-        actualizarEtiquetaTurno();
-        refrescarPanel();
+        if (dialog.seRegistraNuevoJuego()) {
+            actualizarEtiquetasJugadores(dialog);
+            actualizarEtiquetaTurno();
+            refrescarPanel();
+        }
     }//GEN-LAST:event_btnNuevoJuegoActionPerformed
 
     private void refrescarPanel() {
