@@ -6,6 +6,7 @@ package com.mycompany.ipc1_02_2023.pilasycolas;
 
 import com.mycompany.ipc1_02_2023.pilasycolas.cola.Cola;
 import com.mycompany.ipc1_02_2023.pilasycolas.exceptions.ColaException;
+import com.mycompany.ipc1_02_2023.pilasycolas.frontend.PilasYColasApp;
 
 /**
  *
@@ -40,5 +41,7 @@ public class Main {
             System.out.println(e.getMessage());
         }
 
+        PilasYColasApp app = new PilasYColasApp();
+        app.setVisible(true);
     }
 }

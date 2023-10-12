@@ -51,4 +51,12 @@ public class Cola {
     public boolean estaVacia() {
         return disponible == 0;
     }
+    
+    public int getDisponible() {
+        return disponible;
+    }
+    
+    public String[] getArregloCola() {
+        return arregloCola;
+    }
 }

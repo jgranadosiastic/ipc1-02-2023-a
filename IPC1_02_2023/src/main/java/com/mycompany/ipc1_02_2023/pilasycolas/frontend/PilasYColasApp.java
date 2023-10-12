@@ -10,11 +10,14 @@ package com.mycompany.ipc1_02_2023.pilasycolas.frontend;
  */
 public class PilasYColasApp extends javax.swing.JFrame {
 
+    private ColaFrame colaFrame;
     /**
      * Creates new form PilasYColasApp
      */
     public PilasYColasApp() {
         initComponents();
+        colaFrame = new ColaFrame();
+        this.desktopPane.add(colaFrame);
     }
 
     /**
@@ -47,6 +50,11 @@ public class PilasYColasApp extends javax.swing.JFrame {
 
         btnCola.setMnemonic('o');
         btnCola.setText("Cola");
+        btnCola.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnColaActionPerformed(evt);
+            }
+        });
         fileMenu.add(btnCola);
 
         btnPila.setMnemonic('s');
@@ -104,6 +112,10 @@ public class PilasYColasApp extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnColaActionPerformed
+        colaFrame.setVisible(true);
+    }//GEN-LAST:event_btnColaActionPerformed
 
     
 
