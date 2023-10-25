@@ -10,14 +10,13 @@ import com.mycompany.ipc1_02_2023.listasenlazadas.exception.ListaEnlazadaExcepti
  *
  * @author jose
  */
-public class Lista {
+public class ListaGenerica<T> {
+    private NodoGenerico<T> primero;
+    private NodoGenerico<T> ultimo;
+    private int size = 0;
 
-    private Nodo primero;
-    private Nodo ultimo;
-    private int size = -1;
-
-    public void agregar(String contenido) {
-        Nodo nodoNuevo = new Nodo(contenido);
+    public void agregar(T contenido) {
+        NodoGenerico<T> nodoNuevo = new NodoGenerico<T>(contenido);
         if (esVacia()) {
             primero = nodoNuevo;
             ultimo = nodoNuevo;
@@ -32,7 +31,7 @@ public class Lista {
         return primero == null;
     }
 
-    public String obtenerContenido(int index) throws ListaEnlazadaException {
+    public T obtenerContenido(int index) throws ListaEnlazadaException {
         return obtenerNodo(index).getContenido();
     }
 
@@ -45,15 +44,28 @@ public class Lista {
             primero = null;
             ultimo = null;
         } else {
-            Nodo penultimo = obtenerNodo(size - 2);
+            NodoGenerico<T> penultimo = obtenerNodo(size - 2);
             penultimo.setSiguiente(null);
 
             ultimo = penultimo;
         }
         size--;
     }
+    
+    public void imprimirLista() throws ListaEnlazadaException {
+        if (esVacia()) {
+            throw new ListaEnlazadaException("La lista esta vacia");
+        }
+        
+        NodoGenerico<T> actual = primero;
+        while(actual.getSiguiente() != null) {
+            System.out.println("contenido: " + actual.getContenido());
+            actual = actual.getSiguiente();
+        }
+        System.out.println("contenido: " + actual.getContenido());
+    }
 
-    private Nodo obtenerNodo(int index) throws ListaEnlazadaException {
+    private NodoGenerico<T> obtenerNodo(int index) throws ListaEnlazadaException {
         if (esVacia()) {
             throw new ListaEnlazadaException("La lista esta vacia.");
         }
@@ -61,7 +73,7 @@ public class Lista {
             throw new ListaEnlazadaException("El indice esta fuera del tama;o de la lista.");
         }
 
-        Nodo actual = primero;
+        NodoGenerico<T> actual = primero;
         for (int i = 0; i < index; i++) {
             /*Nodo temp = actual.getSiguiente();
             actual = temp;*/
