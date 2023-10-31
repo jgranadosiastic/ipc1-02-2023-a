@@ -4,17 +4,21 @@
  */
 package com.mycompany.ipc1_02_2023.files.binary;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author jose
  */
-public class Libro {
+public class Libro implements Serializable {
+    
+    private static final long serialVersionUID = 1564654879515L;
+    
     private String isbn;
     private String autor;
     private String titulo;
-    private String editorial;
+    //private String editorial;
     private int edicion;
     private LocalDate fechaPublicacion;
     private boolean activo;
@@ -27,7 +31,7 @@ public class Libro {
         this.isbn = isbn;
         this.autor = autor;
         this.titulo = titulo;
-        this.editorial = editorial;
+        //this.editorial = editorial;
         this.edicion = edicion;
         this.fechaPublicacion = fechaPublicacion;
         activo = true;
@@ -39,7 +43,7 @@ public class Libro {
                 isbn,
                 autor,
                 titulo,
-                editorial,
+                "ssss",//editorial,
                 edicion,
                 fechaPublicacion,
                 activo);
@@ -70,11 +74,11 @@ public class Libro {
     }
 
     public String getEditorial() {
-        return editorial;
+        return null;//editorial;
     }
 
     public void setEditorial(String editorial) {
-        this.editorial = editorial;
+        //this.editorial = editorial;
     }
 
     public int getEdicion() {

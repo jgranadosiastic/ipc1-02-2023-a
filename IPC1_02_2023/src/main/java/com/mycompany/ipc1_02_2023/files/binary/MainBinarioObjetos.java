@@ -5,8 +5,10 @@
 package com.mycompany.ipc1_02_2023.files.binary;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 
@@ -30,16 +32,34 @@ public class MainBinarioObjetos {
         guardarLibro(libro1);
         guardarLibro(libro2);
         
-        /*Libro recuperado = cargarLibro("3333");
-        System.out.println(recuperado);*/
+        Libro recuperado = cargarLibro("1111");
+        System.out.println(recuperado);
     }
 
     private static void guardarLibro(Libro libro) {
         File archivo = new File(pathPrincipal + File.separatorChar + libro.getIsbn());
-        try (FileOutputStream fileOutpuStream = new FileOutputStream(archivo, true); ObjectOutputStream binarioStream = new ObjectOutputStream(fileOutpuStream);) {
+        try (FileOutputStream fileOutpuStream = new FileOutputStream(archivo);
+                ObjectOutputStream binarioStream = new ObjectOutputStream(fileOutpuStream);) {
             binarioStream.writeObject(libro);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private static Libro cargarLibro(String isbn) {
+        File archivo = new File(pathPrincipal + File.separatorChar + isbn);
+        if (!archivo.exists()) {
+            return null;
+        }
+        try (FileInputStream fileInputStream = new FileInputStream(archivo);
+                ObjectInputStream binaryStream = new ObjectInputStream(fileInputStream);) {
+            Libro libroLeido = (Libro) binaryStream.readObject();
+            return libroLeido;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
